@@ -7,6 +7,11 @@ import javax.persistence.*;
 @Entity
 //-- he took this line away. This is saying that our user table is going to be specified as USER in our database
 @Table(name = "USER")
+@NamedQueries({
+        @NamedQuery(name = "User.findAll", query = "FROM User"),
+        @NamedQuery(name = "User.findById", query = "FROM User u WHERE u.id = :id"),
+        @NamedQuery(name = "User.deleteByName", query = "DELETE FROM User u WHERE u.fullName = :fullName")
+})
 public class User {
 //    The next piece we need to do is to take this annotations paste them over our ID column.
 //    So our @column is just specifying what the column is going to be for our id. so we are saying in the database is going to be called User ID
