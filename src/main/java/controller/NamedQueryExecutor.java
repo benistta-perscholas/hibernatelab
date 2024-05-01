@@ -1,3 +1,4 @@
+//##########2 . Cretae a namequery executor under the controller package
 package controller;
 
 import model.User;
@@ -32,27 +33,33 @@ public class NamedQueryExecutor {
     }
 
 
-    public static void listUsers(Session session) {
-        TypedQuery<User> query = session.createNamedQuery("User.findAll", User.class);
-        for (User user : query.getResultList()) {
-            System.out.println("User: " + user.getFullName());
-        }
-    }
-
-
-//    public static void deleteUserByName(Session session, String fullName) {
-//        Transaction transaction = session.beginTransaction();
-//        try {
-//            Query<User> query = session.createNamedQuery("User.deleteByName", User.class);
-//            query.setParameter("fullName", fullName);
-//            int result = query.executeUpdate();
-//            System.out.println("Users deleted: " + result);
-//            transaction.commit();
-//        } catch (Exception e) {
-//            if (transaction != null) transaction.rollback();
-//            e.printStackTrace();
+////   a. In here we are gonna be using this findall. doesnt necessary mean you have to have the same name of what that query is
+////    you just have to implement it somewhere in your query.
+//    public static void listUsers(Session session) {
+////        b. in here we are creating our typequery. we are creating thos anmedquery. we are specifying that it is our user.findall query
+////        what we are passing in to our typequery is that user.class
+//        TypedQuery<User> query = session.createNamedQuery("User.findAll", User.class);
+////        c. we are iterating over
+//        for (User user : query.getResultList()) {
+////            d and list out all of our users.
+//            System.out.println("User: " + user.getFullName());
 //        }
 //    }
+
+
+    public static void deleteUserByName(Session session, String fullName) {
+        Transaction transaction = session.beginTransaction();
+        try {
+            Query<User> query = session.createNamedQuery("User.deleteByName", User.class);
+            query.setParameter("fullName", fullName);
+            int result = query.executeUpdate();
+            System.out.println("Users deleted: " + result);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) transaction.rollback();
+            e.printStackTrace();
+        }
+    }
 
 
 

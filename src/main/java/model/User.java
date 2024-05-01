@@ -7,10 +7,20 @@ import javax.persistence.*;
 @Entity
 //-- he took this line away. This is saying that our user table is going to be specified as USER in our database
 @Table(name = "USER")
+//####1 ADDING NAMEQUERIES TO USER CLASS: ADDED THIS AFTER HQLEXECUTOR, AND MAINRUNNER. LESSON 304 PAGE 57
+// A1. We are updating our user class with these name queries.
+//NOW IN OUR USER class we have created these 3 namequeries . we are using this outter wrapper of this
+// A2. namequeries annotation and in the inside we are specifying each query with our @namequery annotation.
 @NamedQueries({
+//    A3.    so here we are saying that this going to be specified to our user at the findall
         @NamedQuery(name = "User.findAll", query = "FROM User"),
+//        A4. this method will be based on the user and will be findbyid
         @NamedQuery(name = "User.findById", query = "FROM User u WHERE u.id = :id"),
+//        A5. and here we have our delete by name.
         @NamedQuery(name = "User.deleteByName", query = "DELETE FROM User u WHERE u.fullName = :fullName")
+//        A6. so everytime we lok at our findbyid and find by name, everytime we see this colon :(:) we can understand it's gonna be dynamic.
+//        its gonna be based on the argument we passed in. so one will be based on the id we passed in and the other besed
+//        on the fullName we passed in :(:id for findbyid and fullName for deletebyname)
 })
 public class User {
 //    The next piece we need to do is to take this annotations paste them over our ID column.
